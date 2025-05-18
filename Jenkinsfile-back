@@ -4,7 +4,7 @@ agent any
   stage('Echo Hello') {
    steps {
    // Run the Ansible playbook
-   echo "Hello-Indrani"
+   echo localhost
   }
  }
 }
