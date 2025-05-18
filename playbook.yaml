@@ -1,15 +1,17 @@
 ---
-- name: Check SSH service status
-  hosts: localhost
+- name: Install nginx in Azure VM and AWS EC2
+  hosts: all
   become: true
-
   tasks:
-    - name: Check SSH service status
-      service:
-        name: ssh
-        state: started
-      register: ssh_service_status
-
-    - name: Print SSH service status
-      debug:
-        msg: "SSH service is {{ ssh_service_status.state }}"
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: index.html
+        dest: /var/www/html
+        owner: root
+        group: root
+        mode: '0644'
