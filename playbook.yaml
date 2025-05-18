@@ -2,6 +2,7 @@
 - name: Install nginx in Azure VM and AWS EC2
   hosts: all
   become: true
+  become_method: sudo
   tasks:
     - name: Install nginx
       ansible.builtin.apt:
